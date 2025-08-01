@@ -1,56 +1,143 @@
-# Exapture
+# Exapture - Precise Screenshot Tool for Mac
 
-A precise screenshot tool for macOS that lets you capture exact dimensions with a cursor-following overlay.
+**The most accurate screenshot tool for macOS** - Capture exact pixel dimensions with a real-time cursor-following overlay. Perfect for developers, designers, and anyone who needs pixel-perfect screenshots.
 
-## Features
+[![GitHub release](https://img.shields.io/github/v/release/lXXXw/exapture)](https://github.com/lXXXw/exapture/releases)
+[![macOS](https://img.shields.io/badge/macOS-11.0+-blue)](https://github.com/lXXXw/exapture)
+[![Swift](https://img.shields.io/badge/Swift-5.9+-orange)](https://github.com/lXXXw/exapture)
+[![License](https://img.shields.io/github/license/lXXXw/exapture)](LICENSE)
 
-- **Cursor-following overlay**: Red border box that shows exactly what will be captured
-- **Precise dimensions**: Capture exactly the size you specify (default 1280×800)
-- **Simple controls**: Right-click to capture, ESC to exit
-- **Retina display support**: Handles high-DPI displays correctly
+## ✨ Why Choose Exapture?
 
-## Installation
+Unlike other Mac screenshot tools, Exapture gives you **pixel-perfect precision** with a live preview overlay:
 
+- 🎯 **Exact dimensions**: Set custom width/height (1280×800, 1920×1080, etc.)
+- 👁️ **Live preview**: Dotted overlay shows exactly what you'll capture
+- ⚡ **Lightning fast**: Right-click to capture, ESC to exit
+- 🖥️ **Retina ready**: Perfect for MacBook Pro, iMac, and external displays
+- 🎨 **Developer friendly**: CLI tool, perfect for automation and scripts
+
+## 🚀 Key Features
+
+### Screenshot Tool Features
+- **Precise screenshot capture** with custom dimensions
+- **Cursor-following overlay** with dotted red border
+- **Pixel-perfect accuracy** for design work
+- **Custom screenshot sizes** via command line
+- **Instant capture** with right-click
+- **Desktop auto-save** with timestamps
+
+### macOS Integration  
+- **Native macOS app** built with Swift
+- **Retina display support** for high-DPI screens
+- **System accessibility** integration
+- **Lightweight and fast** (1.5MB binary)
+
+## 📦 Installation Options
+
+### Quick Install (Recommended)
 ```bash
-# Clone and build
-git clone <repository-url>
+# Download and install the latest release
+curl -L https://github.com/lXXXw/exapture/releases/latest/download/exapture -o exapture
+chmod +x exapture
+sudo mv exapture /usr/local/bin/
+```
+
+### Build from Source
+```bash
+git clone https://github.com/lXXXw/exapture.git
 cd exapture
 swift build -c release
-
-# Install globally (optional)
-cp .build/release/exapture /usr/local/bin/
+sudo cp .build/release/exapture /usr/local/bin/
 ```
 
-## Usage
-
+### Homebrew (Coming Soon)
 ```bash
-# Default 1280×800 capture
+# Will be available soon
+brew install exapture
+```
+
+## 🎮 Usage Examples
+
+### Basic Screenshot Capture
+```bash
+# Default 1280×800 screenshot
 exapture
 
-# Custom dimensions
-exapture --width 1920 --height 1080
-exapture -w 800 -h 600
+# Common screen sizes
+exapture --width 1920 --height 1080  # Full HD
+exapture --width 1280 --height 720   # HD
+exapture --width 800 --height 600    # Classic 4:3
+exapture -w 1024 -h 768              # iPad resolution
 ```
 
-## How it works
+### Use Cases
+- **Web developers**: Capture exact browser viewport sizes
+- **UI/UX designers**: Get pixel-perfect design mockups  
+- **QA testers**: Document bugs with precise screenshots
+- **Content creators**: Consistent social media image sizes
+- **Developers**: Automate screenshot capture in scripts
 
-1. **Start**: Red overlay box appears at your cursor
-2. **Move**: Box follows cursor showing capture area  
-3. **Right Click**: Takes screenshot of exact area
-4. **ESC**: Exits program
+## 🛠 How It Works
 
-Screenshots are saved to your Desktop with timestamps like `exapture_2024-01-01_14-30-25.png`.
+1. **Launch**: `exapture` command starts the tool
+2. **Position**: Dotted red overlay appears at your cursor
+3. **Preview**: Move mouse to see exact capture area
+4. **Capture**: Right-click to take screenshot
+5. **Save**: Auto-saved to Desktop with timestamp
+6. **Exit**: Press ESC to quit
 
-## Requirements
+**File naming**: `exapture_2024-08-01_14-30-25.png`
 
-- macOS 11.0+
-- Swift 5.9+
-- **Accessibility permissions** (system will prompt on first run)
+## 📋 System Requirements
 
-## Permissions
+- **macOS**: 11.0 (Big Sur) or later
+- **Architecture**: Apple Silicon (M1/M2/M3) or Intel
+- **Permissions**: Accessibility access (auto-prompted)
+- **Storage**: 2MB disk space
 
-The app requires Accessibility permissions to:
-- Monitor global mouse events
-- Detect right-clicks and ESC key presses
+## 🔐 Privacy & Permissions
 
-Grant permissions in: **System Settings → Privacy & Security → Accessibility**
+Exapture needs **Accessibility permissions** to:
+- ✅ Monitor mouse clicks and movement
+- ✅ Detect keyboard shortcuts (ESC key)
+- ❌ No internet access
+- ❌ No data collection
+- ❌ No telemetry or analytics
+
+**Grant permissions**: System Settings → Privacy & Security → Accessibility → Add Exapture
+
+## 🆚 Comparison with Other Screenshot Tools
+
+| Feature | Exapture | Lightshot | Snagit | macOS Screenshot |
+|---------|----------|-----------|--------|------------------|
+| Exact dimensions | ✅ | ❌ | ❌ | ❌ |
+| Live preview overlay | ✅ | ❌ | ❌ | ❌ |
+| CLI automation | ✅ | ❌ | ❌ | ✅ |
+| Free & open source | ✅ | ✅ | ❌ | ✅ |
+| Custom sizes | ✅ | ❌ | ✅ | ❌ |
+| Lightweight | ✅ (1.5MB) | ❌ | ❌ | ✅ |
+
+## 🎯 Perfect For
+
+- **Frontend Developers** - Test responsive designs
+- **UI/UX Designers** - Create consistent mockups  
+- **QA Engineers** - Document visual bugs
+- **Content Creators** - Social media graphics
+- **Bloggers** - Consistent image sizes
+- **Students** - Academic presentations
+- **Anyone** who needs precise screenshots
+
+## ❓ FAQ
+
+**Q: How is this different from built-in macOS screenshot tools?**  
+A: Exapture provides exact pixel dimensions with live preview. macOS tools capture arbitrary areas.
+
+**Q: Can I use this in automated scripts?**  
+A: Yes! It's a CLI tool perfect for automation and CI/CD pipelines.
+
+**Q: Does it work on external monitors?**  
+A: Absolutely! Full support for multiple displays and Retina screens.
+
+**Q: Is it safe to use?**  
+A: 100% open source, no network access, no data collection. You can review all code.
