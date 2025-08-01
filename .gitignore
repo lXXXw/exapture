@@ -1,0 +1,16 @@
+# Swift Package Manager
+.build/
+Packages/
+Package.resolved
+
+# Xcode
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+.swiftpm/
+
+# macOS
+.DS_Store
+
+# Screenshots (optional - remove if you want to track example screenshots)
+*.png
