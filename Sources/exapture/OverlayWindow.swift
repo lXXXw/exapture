@@ -2,9 +2,26 @@ import Foundation
 import AppKit
 import CoreGraphics
 
+class DashedBorderView: NSView {
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
+        
+        guard let context = NSGraphicsContext.current?.cgContext else { return }
+        
+        // Set up the dashed line
+        context.setStrokeColor(NSColor.systemRed.withAlphaComponent(0.7).cgColor)
+        context.setLineWidth(2.0)
+        context.setLineDash(phase: 0, lengths: [8.0, 4.0]) // 8pt dash, 4pt gap
+        
+        // Draw the border rectangle
+        let borderRect = bounds.insetBy(dx: 1.0, dy: 1.0) // Inset to avoid clipping
+        context.stroke(borderRect)
+    }
+}
+
 class OverlayWindow: NSWindow {
     private let dimensionLabel: NSTextField
-    private let borderView: NSView
+    private let borderView: DashedBorderView
     private let captureWidth: Int
     private let captureHeight: Int
     
@@ -13,7 +30,7 @@ class OverlayWindow: NSWindow {
         self.captureHeight = height
         
         // Create border view
-        self.borderView = NSView()
+        self.borderView = DashedBorderView()
         
         // Create dimension label
         self.dimensionLabel = NSTextField(labelWithString: "\(width) × \(height)")
@@ -36,14 +53,11 @@ class OverlayWindow: NSWindow {
         
         // Configure border view
         borderView.frame = contentView!.bounds
-        borderView.wantsLayer = true
-        borderView.layer?.borderColor = NSColor.systemRed.cgColor
-        borderView.layer?.borderWidth = 2.0
-        borderView.layer?.backgroundColor = NSColor.clear.cgColor
+        borderView.wantsLayer = false // Use custom drawing instead of layer
         
         // Configure dimension label
-        dimensionLabel.textColor = NSColor.systemRed
-        dimensionLabel.backgroundColor = NSColor.black.withAlphaComponent(0.7)
+        dimensionLabel.textColor = NSColor.systemRed.withAlphaComponent(0.8)
+        dimensionLabel.backgroundColor = NSColor.black.withAlphaComponent(0.5)
         dimensionLabel.font = NSFont.monospacedSystemFont(ofSize: 14, weight: .medium)
         dimensionLabel.alignment = .center
         dimensionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -114,6 +128,18 @@ class CaptureController {
     }
     
     func start() {
+        // Get initial cursor position and set overlay there
+        let initialCursorLocation = NSEvent.mouseLocation
+        // Convert from AppKit coordinates to CGEvent coordinates for consistency
+        guard let screen = NSScreen.main else { return }
+        let screenHeight = screen.frame.height
+        let cgEventLocation = CGPoint(
+            x: initialCursorLocation.x,
+            y: screenHeight - initialCursorLocation.y
+        )
+        
+        lastCursorPosition = cgEventLocation
+        overlayWindow.updatePosition(cursorLocation: cgEventLocation)
         overlayWindow.show()
         eventMonitor?.start()
     }
