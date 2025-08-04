@@ -51,9 +51,10 @@ swift build -c release
 sudo cp .build/release/exapture /usr/local/bin/
 ```
 
-### Homebrew (Coming Soon)
+### Homebrew
+
 ```bash
-# Will be available soon
+brew tap lXXXw/tools
 brew install exapture
 ```
 

@@ -172,17 +172,17 @@ class CaptureController {
                 height: CGFloat(self.captureHeight)
             )
             
-            print("=== COORDINATE MATCH DEBUG ===")
-            print("Cursor location (CGEvent): \(cursorLocation)")
-            print("Screen height: \(screenHeight)")
-            print("Capture rect (CG): \(captureRect)")
-            print("Target size: \(self.captureWidth) × \(self.captureHeight)")
-            
             if let filename = self.screenCapture.captureSimple(rect: captureRect, targetWidth: self.captureWidth, targetHeight: self.captureHeight) {
                 print("Screenshot saved: \(filename)")
             } else {
                 print("Failed to capture screenshot")
             }
+
+            print("=== COORDINATE MATCH DEBUG ===")
+            print("Cursor location (CGEvent): \(cursorLocation)")
+            print("Screen height: \(screenHeight)")
+            print("Capture rect (CG): \(captureRect)")
+            print("Target size: \(self.captureWidth) × \(self.captureHeight)")
             
             self.overlayWindow.show()
         }
